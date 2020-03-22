@@ -67,10 +67,12 @@ def save_data(df, database_filename):
     OUTPUT:
     saves the dataframe to SQL database
     """
-    name = 'sqlite:///' + database_filename
-    engine = create_engine(name)
-    df.to_sql('msgCat', engine, index=False, if_exists='replace')  
-
+    try:
+         name = 'sqlite:///' + database_filename
+         engine = create_engine(name)
+         df.to_sql('msgCat', engine, index=False)  
+     except:
+         pass
 
 def main():
     if len(sys.argv) == 4:
