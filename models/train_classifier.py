@@ -74,9 +74,15 @@ def build_model():
         ('tfidf', TfidfTransformer()),
         ('clf', MultiOutputClassifier(RandomForestClassifier()))
         ])
-    # not using GridSearchCV in this part because this pipeline has been chosen from the jupyter notebook
-    # this pipeline gave better results compared to the rest models
-    return model_pipeline
+    
+    # parameter for Grid Search
+    parameters = {'clf__estimator__min_samples_leaf': [1, 5, 10],
+                 'clf__estimator__min_samples_split': [2, 5],
+                 'clf__estimator__n_estimators': [10, 20]}
+    
+    # initializing a Grid Search
+    cv = GridSearchCV(model_pipeline, parameters)
+    return cv
  
     
 def evaluate_model(model, X_test, y_test, category_names):
