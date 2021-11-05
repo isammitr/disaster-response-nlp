@@ -47,7 +47,6 @@ def index():
     category_name = list(count_of_each_category.index)
     
     # create visuals
-    # TODO: Below is an example - modify to create your own visuals
     graphs = [
         {
             'data': [
